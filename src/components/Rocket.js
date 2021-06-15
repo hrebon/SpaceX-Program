@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "./RocketLaunchDetails.css";
+import "./Rocket.css";
 
-function RocketLaunchDetails({ details }) {
+function Rocket({ details }) {
   const {
     flight_number,
     mission_name,
@@ -16,38 +16,38 @@ function RocketLaunchDetails({ details }) {
   const land_success = rocket.first_stage.cores[0].land_success;
 
   return (
-    <Card className="Rocket-details-card">
+    <Card className="Rocket-card">
       <div key={flight_number}>
         <div>
           <img
             src={imgSrc}
-            alt="mission patch img not available on api"
-            className="Rocket-mission-image"
+            alt=" "
+            className="Rocket-image"
           />
         </div>
-        <div className="Rocket-mission-name-flight-number">
+        <div className="Rocket-name-flight-number">
           {mission_name} #{flight_number}
         </div>
-        <div className="Rocket-detail-label">
+        <div className="Rocket-label">
           Mission Ids:{" "}
           <ul>
             {" "}
-            <li className="Rocket-detail-value">{mission_id}</li>
+            <li className="Rocket-value">{mission_id}</li>
           </ul>
         </div>
-        <div className="Rocket-detail-label">
+        <div className="Rocket-label">
           Launch Year:{" "}
-          <span className="Rocket-detail-value">{launch_year}</span>
+          <span className="Rocket-value">{launch_year}</span>
         </div>
-        <div className="Rocket-detail-label">
+        <div className="Rocket-label">
           Successful Launch:{" "}
-          <span className="Rocket-detail-value">
+          <span className="Rocket-value">
             {launch_success ? "true" : "false"}
           </span>
         </div>
-        <div className="Rocket-detail-label">
+        <div className="Rocket-label">
           Successful Landing:{" "}
-          <span className="Rocket-detail-value">
+          <span className="Rocket-value">
             {land_success ? "true" : "false"}
           </span>
         </div>
@@ -56,4 +56,4 @@ function RocketLaunchDetails({ details }) {
   );
 }
 
-export default RocketLaunchDetails;
+export default Rocket;

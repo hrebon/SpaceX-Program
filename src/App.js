@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import RocketLaunchDetails from './components/RocketLaunchDetails';
+import Rocket from './components/Rocket';
 import querystring from 'querystring';
 import './App.css';
-import loader from './loadRocket.gif';
+import loader from './loading.gif';
 
 const API_BASE_URL = "https://api.spacexdata.com/v3/launches?limit=100";
 
@@ -46,8 +46,8 @@ class App extends Component {
     this.fetchAPI(this.state.filters);
   }
 
-  updateApiFilters(type, value) {
-    // if same value is clicked, we remove that filter
+  ApiFilters(type, value) {
+    
     if (this.state.filters[type] === value) {
       value = undefined;
     }
@@ -64,7 +64,7 @@ class App extends Component {
   render() {
 
     const { isLoaded, data } = this.state;
-    const uniqueLaunchYears = new Array(16).fill(0).map((_, index) => 2006 + index);
+    const LaunchYears = new Array(16).fill(0).map((_, index) => 2006 + index);
 
     if (!isLoaded) {
       return <div className="App-loader-container">
@@ -94,7 +94,7 @@ class App extends Component {
 
                     <Row>
                       <div className="App-filter-button-container">
-                        {uniqueLaunchYears.map((year) => {
+                        {LaunchYears.map((year) => {
                           return (
                             <Button
                               className="App-filter-button"
@@ -106,7 +106,7 @@ class App extends Component {
                               }
                               value={year}
                               onClick={(e) =>
-                                this.updateApiFilters(
+                                this.ApiFilters(
                                   "launch_year",
                                   e.target.value
                                 )
@@ -133,7 +133,7 @@ class App extends Component {
                             : "outline-success"
                         }
                         onClick={(e) =>
-                          this.updateApiFilters(
+                          this.ApiFilters(
                             "launch_success",
                             e.target.value
                           )
@@ -151,7 +151,7 @@ class App extends Component {
                             : "outline-success"
                         }
                         onClick={(e) =>
-                          this.updateApiFilters(
+                          this.ApiFilters(
                             "launch_success",
                             e.target.value
                           )
@@ -175,7 +175,7 @@ class App extends Component {
                             : "outline-success"
                         }
                         onClick={(e) =>
-                          this.updateApiFilters("land_success", e.target.value)
+                          this.ApiFilters("land_success", e.target.value)
                         }
                         value="true"
                       >
@@ -190,7 +190,7 @@ class App extends Component {
                             : "outline-success"
                         }
                         onClick={(e) =>
-                          this.updateApiFilters("land_success", e.target.value)
+                          this.ApiFilters("land_success", e.target.value)
                         }
                         value="false"
                       >
@@ -206,7 +206,7 @@ class App extends Component {
                   {data.map((details) => {
                     return (
                       <Col md={12} lg={4}>
-                        <RocketLaunchDetails details={details} />
+                        <Rocket details={details} />
                       </Col>
                     );
                   })}
@@ -215,7 +215,7 @@ class App extends Component {
             </Row>
             <div>
               <h5 className="App-Developers-name">
-                Developed by : Jasvinder Singh, Jennifer B 
+                Developed by : Habibur Rahman 
               </h5>
             </div>
           </Container>
